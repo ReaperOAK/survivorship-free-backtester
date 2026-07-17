@@ -75,4 +75,18 @@ examples of a methodology**, not recommendations to buy or sell. There are **no 
 return projections** — all figures are historical backtests (which overfit) on a strong
 market era, and *past performance is not indicative of future results*. Everything runs on
 **paper money**. Do your own research and consult a SEBI-registered adviser before investing
-real money. Use at your own risk under the MIT License.
+real money. Use at your own risk.
+
+## License
+
+**Source-available, not "open source."** Licensed under the **PolyForm Noncommercial
+License 1.0.0** (see [`LICENSE`](LICENSE)):
+
+- ✅ **Free for noncommercial use** — personal projects, research, learning, hobby use,
+  and nonprofit / educational / government organizations.
+- 💼 **Commercial use requires a paid license** from the author. If you or your company
+  want to use this in a product, service, or anything directed toward commercial
+  advantage, contact [@ReaperOAK](https://github.com/ReaperOAK) first to arrange terms.
+
+Deliberate choice: share the work so people can learn from it — but nobody monetizes it
+without the author.
