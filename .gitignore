@@ -1,0 +1,23 @@
+# Python
+__pycache__/
+*.pyc
+.venv*/
+venv/
+
+# Data store, caches, live paper-account state (must never be committed)
+*.duckdb
+*.duckdb.wal
+*.sqlite
+*_account.json
+current_signal.txt
+*.log
+pxcache/
+runs/
+explore/
+
+# Bulk backtest outputs
+*.csv
+!**/requirements*.csv
+
+# OS
+.DS_Store
