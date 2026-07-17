@@ -26,7 +26,6 @@ account against the result.
 | **Signal engine** | `trading-lab/signal_engine.py` | App-ready "what to hold now" from the store, with the corrected + after-tax stats attached so a fantasy number can't be shown. |
 | **Live paper accounts** | `trading-lab/fund_sip.py`, `india_ledger.py` | (1) Two-fund monthly SIP into real Nifty 500 index + Momentum 50 funds (fractional units, real NAVs from mfapi.in). (2) Direct-stock ensemble-regime ledger. Both idempotent, cron-driven. |
 | **SIP strategy research** | `trading-lab/sip_strategies.py`, `sip_robustness.py` | Tests dip-buying / rebalancing / regime overlays on a monthly SIP, after tax — and stress-tests whether the "edge" is real or just factor exposure. |
-| **Product spec** | `PRD.md` | An honest, tool-not-advice backtesting product concept (avoids SEBI RIA regulation; no forward projections). |
 
 ## Honest headline findings
 
@@ -69,6 +68,11 @@ the ideas were sharpened against:
 
 ## Disclaimer
 
-Educational research only. Not investment advice, not a recommendation to buy or sell any
-security. No forward return projections. Paper money throughout. Do your own research and
-consult a SEBI-registered adviser before investing real money.
+**Educational research only. This is not investment advice.** The author is **not** a
+SEBI-registered investment adviser, and nothing here is a solicitation, a personalized
+recommendation, or a promise of returns. Any funds, ETFs, or stocks named are **illustrative
+examples of a methodology**, not recommendations to buy or sell. There are **no forward
+return projections** — all figures are historical backtests (which overfit) on a strong
+market era, and *past performance is not indicative of future results*. Everything runs on
+**paper money**. Do your own research and consult a SEBI-registered adviser before investing
+real money. Use at your own risk under the MIT License.

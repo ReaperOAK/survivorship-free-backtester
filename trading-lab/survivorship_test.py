@@ -16,7 +16,7 @@ import duckdb
 warnings.filterwarnings("ignore")
 sys.path.insert(0, os.path.dirname(__file__))
 DB = os.path.expanduser("~/.vibe-trading/market.duckdb")
-WEIGHTS = "/home/reaperoak/Downloads/nifty50_hist/weights.csv"
+WEIGHTS = os.environ.get("NIFTY50_WEIGHTS", os.path.expanduser("~/Downloads/nifty50_hist/weights.csv"))
 COST, ANN, TOPK = 0.0005, 252, 10
 
 

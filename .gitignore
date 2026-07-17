@@ -21,3 +21,7 @@ explore/
 
 # OS
 .DS_Store
+
+# personal (kept local, never published)
+note.md
+PRD.md
