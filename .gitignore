@@ -15,6 +15,10 @@ pxcache/
 runs/
 explore/
 
+# Explicitly track nightly audit snapshots for immutable paper-trial record
+!audit_snapshots/
+!audit_snapshots/**
+
 # Bulk backtest outputs
 *.csv
 !**/requirements*.csv
