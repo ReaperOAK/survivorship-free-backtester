@@ -1,3 +1,6 @@
 [2026-11-19 07:33:26 UTC] Status: HEALTHY | Store: 2026-11-17 | Positions: 44 | Cash: Rs 62,305.37
 [2026-11-19 07:51:26 UTC] Status: HEALTHY | Store: 2026-11-17 (Expected: 2026-11-18) | Main Book: 43 pos, Cash: Rs 46,707.61 | Vol Book: 44 pos, Cash: Rs 376,447.73
 [2026-11-19 07:51:49 UTC] Status: HEALTHY | Store: 2026-11-17 (Expected: 2026-11-18) | Main Book: 44 pos, Cash: Rs 62,305.37 | Vol Book: 44 pos, Cash: Rs 376,447.73
+[2026-11-19 17:30:02 UTC] Status: HEALTHY | Store: 2026-11-18 (Expected: 2026-11-19) | Main Book: 43 pos, Cash: Rs 69,732.55 | Vol Book: 42 pos, Cash: Rs 401,833.67
+[NOTICE] No external dead-man's switch or webhook configured in ~/.vibe-trading/alerts.json. If this OCI instance terminates, failures will go unnotified.
+[2026-11-19 17:30:02 UTC] Status: HEALTHY | Store: 2026-11-18 (Expected: 2026-11-19) | Main Book: 43 pos, Cash: Rs 69,732.55 | Vol Book: 42 pos, Cash: Rs 401,833.67
