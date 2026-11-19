@@ -2,9 +2,10 @@
 kill_rule_watchdog.py — Automated enforcement watchdog for pre-registered kill rules.
 
 Runs monthly via cron. Evaluates:
-  1. Peak-to-trough drawdown (must be <= 22.0%)
-  2. Idle cash drag (must be <= 15.0% for 3 consecutive months)
-  3. Underperformance vs Nifty 500 TRI at month 12
+  1. Peak-to-trough drawdown (must be <= 22.0%).
+  2. Idle cash drag (must be <= 15.0% for 3 consecutive months).
+  3. Underperformance vs investable Nifty 500 TRI Fund (ICICI Pru 153161) after 20% STCG tax at Month 12.
+  4. Fail-loudly: Raises RuntimeError if any held symbol lacks closing price (no cost-basis fallback).
 
 Usage:
   python trading-lab/kill_rule_watchdog.py
@@ -20,6 +21,14 @@ LOG = os.path.expanduser("~/.vibe-trading/kill_rule_audit.log")
 
 MAX_DD_LIMIT = 0.22
 MAX_CASH_DRAG = 0.15
+MAX_UNDERPERF_PP = 0.06  # 6.0 percentage points trailing benchmark after-tax
+STCG_RATE = 0.20         # 20.0% Indian Short-Term Capital Gains tax rate
+
+# Benchmark Registration
+BENCHMARK_SCHEME = "153161"  # ICICI Pru Nifty 500 Index Fund (Direct - Growth)
+DAY_ZERO_BENCHMARK_NAV = 10.6787
+DAY_ZERO_BENCHMARK_UNITS = 93644.3575  # Rs 10,00,000 / 10.6787
+DAY_ZERO_EQUITY = 998128.35
 
 
 def run_watchdog():
@@ -33,7 +42,7 @@ def run_watchdog():
     con = duckdb.connect(DB, read_only=True)
     today = time.strftime("%Y-%m-%d")
 
-    # 1. Calculate current equity
+    # 1. Calculate current equity with fail-loudly pricing
     cash = float(acct["cash"])
     positions = acct.get("positions", {})
     pos_val = 0.0
@@ -48,8 +57,14 @@ def run_watchdog():
             QUALIFY ROW_NUMBER() OVER (PARTITION BY symbol ORDER BY date DESC) = 1
         """, syms).df()
         px_map = dict(zip(df_px["symbol"], df_px["close"]))
+        
         for s, p in positions.items():
-            pos_val += p["qty"] * px_map.get(s, p["avg_price"])
+            if s not in px_map or px_map[s] is None:
+                con.close()
+                raise RuntimeError(f"Watchdog CRITICAL: Held symbol '{s}' has no market price in DuckDB! Aborting audit.")
+            pos_val += p["qty"] * float(px_map[s])
+
+    con.close()
 
     equity = cash + pos_val
     cash_drag = cash / equity if equity > 0 else 0.0
