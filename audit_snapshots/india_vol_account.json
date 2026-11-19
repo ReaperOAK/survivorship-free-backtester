@@ -1,0 +1,581 @@
+{
+  "starting_balance": 1000000.0,
+  "cash": 376447.73470000003,
+  "positions": {
+    "AETHER": {
+      "qty": 13,
+      "avg_price": 1662.7000000000003,
+      "entry_date": "2026-11-18"
+    },
+    "ANANDRATHI": {
+      "qty": 9,
+      "avg_price": 2375.3,
+      "entry_date": "2026-11-18"
+    },
+    "APARINDS": {
+      "qty": 1,
+      "avg_price": 14171.0,
+      "entry_date": "2026-11-18"
+    },
+    "ATHERENERG": {
+      "qty": 12,
+      "avg_price": 1908.5999999999997,
+      "entry_date": "2026-11-18"
+    },
+    "CPPLUS": {
+      "qty": 5,
+      "avg_price": 3989.2,
+      "entry_date": "2026-11-18"
+    },
+    "HFCL": {
+      "qty": 101,
+      "avg_price": 226.27,
+      "entry_date": "2026-11-18"
+    },
+    "LAURUSLABS": {
+      "qty": 9,
+      "avg_price": 2338.0,
+      "entry_date": "2026-11-18"
+    },
+    "MCX": {
+      "qty": 6,
+      "avg_price": 3705.4,
+      "entry_date": "2026-11-18"
+    },
+    "MTARTECH": {
+      "qty": 4,
+      "avg_price": 5709.5,
+      "entry_date": "2026-11-18"
+    },
+    "RUBICON": {
+      "qty": 13,
+      "avg_price": 1683.9,
+      "entry_date": "2026-11-18"
+    },
+    "SANSERA": {
+      "qty": 4,
+      "avg_price": 4614.6,
+      "entry_date": "2026-11-18"
+    },
+    "SHRIPISTON": {
+      "qty": 5,
+      "avg_price": 4322.1,
+      "entry_date": "2026-11-18"
+    },
+    "STLTECH": {
+      "qty": 56,
+      "avg_price": 405.15,
+      "entry_date": "2026-11-18"
+    },
+    "SYRMA": {
+      "qty": 16,
+      "avg_price": 1433.9,
+      "entry_date": "2026-11-18"
+    },
+    "WELCORP": {
+      "qty": 10,
+      "avg_price": 2260.2,
+      "entry_date": "2026-11-18"
+    },
+    "ACUTAAS": {
+      "qty": 2,
+      "avg_price": 3942.9,
+      "entry_date": "2026-11-18"
+    },
+    "AEGISLOG": {
+      "qty": 9,
+      "avg_price": 1211.6,
+      "entry_date": "2026-11-18"
+    },
+    "ALKEM": {
+      "qty": 2,
+      "avg_price": 5175.0,
+      "entry_date": "2026-11-18"
+    },
+    "AUROPHARMA": {
+      "qty": 6,
+      "avg_price": 1794.0999999999997,
+      "entry_date": "2026-11-18"
+    },
+    "AZAD": {
+      "qty": 4,
+      "avg_price": 2364.8,
+      "entry_date": "2026-11-18"
+    },
+    "CASTROLIND": {
+      "qty": 60,
+      "avg_price": 191.09,
+      "entry_date": "2026-11-18"
+    },
+    "CIPLA": {
+      "qty": 8,
+      "avg_price": 1388.0,
+      "entry_date": "2026-11-18"
+    },
+    "CRAFTSMAN": {
+      "qty": 1,
+      "avg_price": 11195.0,
+      "entry_date": "2026-11-18"
+    },
+    "FINCABLES": {
+      "qty": 9,
+      "avg_price": 1230.4,
+      "entry_date": "2026-11-18"
+    },
+    "GILLETTE": {
+      "qty": 1,
+      "avg_price": 7098.5,
+      "entry_date": "2026-11-18"
+    },
+    "GLAND": {
+      "qty": 3,
+      "avg_price": 3248.4,
+      "entry_date": "2026-11-18"
+    },
+    "GODREJCP": {
+      "qty": 12,
+      "avg_price": 894.5,
+      "entry_date": "2026-11-18"
+    },
+    "HINDUNILVR": {
+      "qty": 5,
+      "avg_price": 2009.9,
+      "entry_date": "2026-11-18"
+    },
+    "IPCALAB": {
+      "qty": 6,
+      "avg_price": 1834.4000000000003,
+      "entry_date": "2026-11-18"
+    },
+    "IRCTC": {
+      "qty": 25,
+      "avg_price": 449.35,
+      "entry_date": "2026-11-18"
+    },
+    "JINDALSAW": {
+      "qty": 44,
+      "avg_price": 258.79,
+      "entry_date": "2026-11-18"
+    },
+    "JSWCEMENT": {
+      "qty": 91,
+      "avg_price": 125.93999999999998,
+      "entry_date": "2026-11-18"
+    },
+    "LT": {
+      "qty": 2,
+      "avg_price": 4155.5,
+      "entry_date": "2026-11-18"
+    },
+    "LUPIN": {
+      "qty": 5,
+      "avg_price": 1950.0,
+      "entry_date": "2026-11-18"
+    },
+    "NATCOPHARM": {
+      "qty": 13,
+      "avg_price": 822.8999999999999,
+      "entry_date": "2026-11-18"
+    },
+    "NTPC": {
+      "qty": 35,
+      "avg_price": 321.8,
+      "entry_date": "2026-11-18"
+    },
+    "ONGC": {
+      "qty": 51,
+      "avg_price": 223.52,
+      "entry_date": "2026-11-18"
+    },
+    "SBIN": {
+      "qty": 10,
+      "avg_price": 1108.6,
+      "entry_date": "2026-11-18"
+    },
+    "SONACOMS": {
+      "qty": 12,
+      "avg_price": 899.7000000000002,
+      "entry_date": "2026-11-18"
+    },
+    "SRF": {
+      "qty": 4,
+      "avg_price": 2479.4,
+      "entry_date": "2026-11-18"
+    },
+    "SUNPHARMA": {
+      "qty": 6,
+      "avg_price": 1870.0,
+      "entry_date": "2026-11-18"
+    },
+    "TORNTPHARM": {
+      "qty": 2,
+      "avg_price": 4668.8,
+      "entry_date": "2026-11-18"
+    },
+    "UTIAMC": {
+      "qty": 13,
+      "avg_price": 847.6499999999999,
+      "entry_date": "2026-11-18"
+    },
+    "WELSPUNLIV": {
+      "qty": 43,
+      "avg_price": 265.62,
+      "entry_date": "2026-11-18"
+    }
+  },
+  "history": [
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "AETHER",
+      "qty": 13,
+      "price": 1662.7,
+      "rupees": 21658.33
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "ANANDRATHI",
+      "qty": 9,
+      "price": 2375.3,
+      "rupees": 21420.46
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "APARINDS",
+      "qty": 1,
+      "price": 14171.0,
+      "rupees": 14199.34
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "ATHERENERG",
+      "qty": 12,
+      "price": 1908.6,
+      "rupees": 22949.01
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "CPPLUS",
+      "qty": 5,
+      "price": 3989.2,
+      "rupees": 19985.89
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "HFCL",
+      "qty": 101,
+      "price": 226.27,
+      "rupees": 22898.98
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "LAURUSLABS",
+      "qty": 9,
+      "price": 2338.0,
+      "rupees": 21084.08
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "MCX",
+      "qty": 6,
+      "price": 3705.4,
+      "rupees": 22276.86
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "MTARTECH",
+      "qty": 4,
+      "price": 5709.5,
+      "rupees": 22883.68
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "RUBICON",
+      "qty": 13,
+      "price": 1683.9,
+      "rupees": 21934.48
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SANSERA",
+      "qty": 4,
+      "price": 4614.6,
+      "rupees": 18495.32
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SHRIPISTON",
+      "qty": 5,
+      "price": 4322.1,
+      "rupees": 21653.72
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "STLTECH",
+      "qty": 56,
+      "price": 405.15,
+      "rupees": 22733.78
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SYRMA",
+      "qty": 16,
+      "price": 1433.9,
+      "rupees": 22988.28
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "WELCORP",
+      "qty": 10,
+      "price": 2260.2,
+      "rupees": 22647.2
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "ACUTAAS",
+      "qty": 2,
+      "price": 3942.9,
+      "rupees": 7901.57
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "AEGISLOG",
+      "qty": 9,
+      "price": 1211.6,
+      "rupees": 10926.21
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "ALKEM",
+      "qty": 2,
+      "price": 5175.0,
+      "rupees": 10370.7
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "AUROPHARMA",
+      "qty": 6,
+      "price": 1794.1,
+      "rupees": 10786.13
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "AZAD",
+      "qty": 4,
+      "price": 2364.8,
+      "rupees": 9478.12
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "CASTROLIND",
+      "qty": 60,
+      "price": 191.09,
+      "rupees": 11488.33
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "CIPLA",
+      "qty": 8,
+      "price": 1388.0,
+      "rupees": 11126.21
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "CRAFTSMAN",
+      "qty": 1,
+      "price": 11195.0,
+      "rupees": 11217.39
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "FINCABLES",
+      "qty": 9,
+      "price": 1230.4,
+      "rupees": 11095.75
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "GILLETTE",
+      "qty": 1,
+      "price": 7098.5,
+      "rupees": 7112.7
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "GLAND",
+      "qty": 3,
+      "price": 3248.4,
+      "rupees": 9764.69
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "GODREJCP",
+      "qty": 12,
+      "price": 894.5,
+      "rupees": 10755.47
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "HINDUNILVR",
+      "qty": 5,
+      "price": 2009.9,
+      "rupees": 10069.6
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "IPCALAB",
+      "qty": 6,
+      "price": 1834.4,
+      "rupees": 11028.41
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "IRCTC",
+      "qty": 25,
+      "price": 449.35,
+      "rupees": 11256.22
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "JINDALSAW",
+      "qty": 44,
+      "price": 258.79,
+      "rupees": 11409.53
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "JSWCEMENT",
+      "qty": 91,
+      "price": 125.94,
+      "rupees": 11483.46
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "LT",
+      "qty": 2,
+      "price": 4155.5,
+      "rupees": 8327.62
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "LUPIN",
+      "qty": 5,
+      "price": 1950.0,
+      "rupees": 9769.5
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "NATCOPHARM",
+      "qty": 13,
+      "price": 822.9,
+      "rupees": 10719.1
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "NTPC",
+      "qty": 35,
+      "price": 321.8,
+      "rupees": 11285.53
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "ONGC",
+      "qty": 51,
+      "price": 223.52,
+      "rupees": 11422.32
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SBIN",
+      "qty": 10,
+      "price": 1108.6,
+      "rupees": 11108.17
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SONACOMS",
+      "qty": 12,
+      "price": 899.7,
+      "rupees": 10817.99
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SRF",
+      "qty": 4,
+      "price": 2479.4,
+      "rupees": 9937.44
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "SUNPHARMA",
+      "qty": 6,
+      "price": 1870.0,
+      "rupees": 11242.44
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "TORNTPHARM",
+      "qty": 2,
+      "price": 4668.8,
+      "rupees": 9356.28
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "UTIAMC",
+      "qty": 13,
+      "price": 847.65,
+      "rupees": 11041.49
+    },
+    {
+      "date": "2026-11-18",
+      "action": "BUY",
+      "symbol": "WELSPUNLIV",
+      "qty": 43,
+      "price": 265.62,
+      "rupees": 11444.5
+    }
+  ],
+  "opened": "2026-11-18"
+}
