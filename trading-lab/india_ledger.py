@@ -1,17 +1,17 @@
 """
 india_ledger.py — LOCAL pretend-money account for INDIAN stocks (in rupees).
 
-Starts with ₹10,000 (fake). Reads india_signal's momentum picks and buys/sells
-to match, using real recent NSE prices + a realistic 0.1% cost. Stored in one
-JSON file. Plain-English on purpose.
+Starts with ₹10,00,000. Reads india_signal's ensemble picks and buys/sells
+to match, using real recent NSE prices + realistic execution cost. Stored in one
+JSON file. 
 
-Note: this SIMULATES fractional shares for simplicity. Real Indian stock brokers
-usually need WHOLE shares (or use an app that allows fractional / buy ETFs) —
-the strategy and the rupee amounts scale the same either way.
+Fail-Loudly Rule: If any held symbol cannot be priced in DuckDB, raises a RuntimeError
+rather than silently masking losses at cost basis.
 
-  python india_ledger.py start [--cash 10000]
+  python india_ledger.py start [--cash 1000000]
   python india_ledger.py rebalance
   python india_ledger.py status
+  python india_ledger.py cron
 """
 from __future__ import annotations
 import os, sys, json, argparse
@@ -21,7 +21,8 @@ sys.path.insert(0, os.path.dirname(__file__))
 import india_signal as strat
 
 ACCOUNT = os.path.expanduser("~/.vibe-trading/india_account.json")
-COST = 0.001
+DB = os.path.expanduser("~/.vibe-trading/market.duckdb")
+COST = 0.002  # 0.20% round-trip friction baseline (STT, stamp, GST)
 
 
 def _today():
@@ -35,6 +36,21 @@ def load_acct():
 def save_acct(a):
     os.makedirs(os.path.dirname(ACCOUNT), exist_ok=True)
     json.dump(a, open(ACCOUNT, "w"), indent=2)
+
+
+def get_latest_price(sym: str) -> float:
+    """Lookup latest closing price for sym from DuckDB; raise RuntimeError if missing."""
+    if os.path.exists(DB):
+        try:
+            import duckdb
+            con = duckdb.connect(DB, read_only=True)
+            row = con.execute("SELECT close FROM prices WHERE symbol = ? ORDER BY date DESC LIMIT 1", [sym]).fetchone()
+            con.close()
+            if row and row[0] is not None:
+                return float(row[0])
+        except Exception as e:
+            raise RuntimeError(f"Database error looking up price for '{sym}': {e}")
+    raise RuntimeError(f"CRITICAL: No market price found for held symbol '{sym}'. Aborting rather than masking as purchase cost.")
 
 
 def start(cash):
@@ -53,7 +69,9 @@ def _prices_and_targets():
 def equity(a, prices):
     val = a["cash"]
     for s, p in a["positions"].items():
-        val += p["qty"] * prices.get(s, p["avg_price"])
+        if s not in prices:
+            prices[s] = get_latest_price(s)
+        val += p["qty"] * prices[s]
     return val
 
 
@@ -61,27 +79,28 @@ def rebalance(a):
     prices, targets, df, held, cash_frac = _prices_and_targets()
     if not prices:
         print("Could not get market data right now (provider busy). Try again shortly.")
-        return a
+        return None
+    
+    # Ensure every single held position is priced from DuckDB before attempting rebalance
+    for s in list(a["positions"].keys()):
+        if s not in prices:
+            prices[s] = get_latest_price(s)
+
     total = equity(a, prices)
     print(f"Account value right now: Rs {total:,.2f}\n")
     min_bal = getattr(df, "attrs", {}).get("min_balance")
     if min_bal and total < min_bal:
         strat_name = getattr(df, "attrs", {}).get("strategy", "momentum")
-        uni = getattr(df, "attrs", {}).get("universe", "nifty200")
-        print(f"NOTE: '{strat_name}' on {uni} needs ~Rs {min_bal:,.0f} to run with WHOLE "
-              f"shares (its priciest pick needs that much at its target weight).")
-        print(f"Your Rs {total:,.0f} is too small — you'd barely be able to buy anything.")
-        print(f"HONEST path for a small account: a Nifty index fund/ETF (fractional units)")
-        print(f"via your SIP, until the balance grows past ~Rs {min_bal:,.0f}. Then switch to this.\n")
+        uni = getattr(df, "attrs", {}).get("universe", "nifty500")
+        print(f"NOTE: '{strat_name}' on {uni} needs ~Rs {min_bal:,.0f} to run with WHOLE shares.")
+
     target_dollars = {s: w * total for s, w in targets.items()}
     trades = []
-    # NSE = WHOLE shares only (no fractional). We floor to integers; leftover
-    # rupees stay as cash. Small accounts therefore can't buy pricey stocks
-    # (a target < 1 share price -> 0 shares) and won't perfectly match weights.
+
     # 1) SELL whole shares of anything overweight or no longer a target
     for s in list(a["positions"].keys()):
         cur_qty = int(a["positions"][s]["qty"])
-        px = prices.get(s, a["positions"][s]["avg_price"])
+        px = prices[s]
         tgt_qty = int(target_dollars.get(s, 0.0) // px) if px else 0
         if tgt_qty < cur_qty:
             sell_qty = cur_qty - tgt_qty
@@ -92,8 +111,8 @@ def rebalance(a):
             else:
                 a["positions"][s]["qty"] = tgt_qty
             trades.append(("SELL", s, sell_qty, px, proceeds))
-    # 2) BUY whole shares toward targets (biggest intended positions first),
-    #    only what the cash can afford
+
+    # 2) BUY whole shares toward targets (biggest intended positions first)
     for s in sorted(target_dollars, key=target_dollars.get, reverse=True):
         px = prices[s]
         cur_qty = int(a["positions"].get(s, {}).get("qty", 0))
@@ -113,6 +132,7 @@ def rebalance(a):
         pos.setdefault("entry_date", _today())
         a["positions"][s] = pos
         trades.append(("BUY", s, buy_qty, px, spend))
+
     for act, s, q, px, d in trades:
         a["history"].append({"date": _today(), "action": act, "symbol": s,
                              "qty": int(q), "price": round(px, 2), "rupees": round(d, 2)})
@@ -129,9 +149,9 @@ def rebalance(a):
 
 
 def contribute(a, amount):
-    """Monthly SIP: add fresh cash from salary, then invest it (rebalance)."""
+    """Monthly SIP: add fresh cash, then rebalance."""
     a["cash"] += amount
-    a["starting_balance"] += amount   # count deposits as capital in, not as 'profit'
+    a["starting_balance"] += amount
     a["history"].append({"date": _today(), "action": "DEPOSIT", "symbol": "-",
                          "qty": 0, "price": 0, "rupees": amount})
     save_acct(a)
@@ -141,8 +161,10 @@ def contribute(a, amount):
 
 def status(a):
     prices, *_ = _prices_and_targets()
-    if not prices:
-        prices = {s: p["avg_price"] for s, p in a["positions"].items()}
+    # Explicitly verify and load prices for all held positions; fail loudly if missing
+    for s in list(a["positions"].keys()):
+        if s not in prices:
+            prices[s] = get_latest_price(s)
     _report(a, prices)
 
 
@@ -159,7 +181,9 @@ def _report(a, prices):
     if a["positions"]:
         print("You own:")
         for s, p in a["positions"].items():
-            px = prices.get(s, p["avg_price"])
+            if s not in prices:
+                prices[s] = get_latest_price(s)
+            px = prices[s]
             val = p["qty"] * px
             gain = (px - p["avg_price"]) * p["qty"]
             print(f"  {s:11} {int(p['qty'])} sh | bought Rs {p['avg_price']:,.2f} since {p['entry_date']}"
@@ -173,13 +197,18 @@ def _report(a, prices):
 
 
 def cron(a):
-    """Idempotent monthly auto-rebalance for the research account (ensemble_regime)."""
+    """Idempotent monthly auto-rebalance for the research account (ensemble_regime).
+    CRITICAL FIX: Only advances last_rebalance_month if rebalance() successfully executes!"""
     month = pd.Timestamp.utcnow().strftime("%Y-%m")
     if a.get("last_rebalance_month") != month:
         print(f"[{_today()}] New month ({month}) — monthly rebalance (ensemble_regime):")
-        a = rebalance(a) or a
-        a["last_rebalance_month"] = month
-        save_acct(a)
+        res = rebalance(a)
+        if res is not None:
+            a = res
+            a["last_rebalance_month"] = month
+            save_acct(a)
+        else:
+            print(f"[{_today()}] Rebalance aborted due to market data error. Will retry tomorrow.")
     else:
         print(f"[{_today()}] Already rebalanced for {month} — status only.")
         status(a)
@@ -188,13 +217,13 @@ def cron(a):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("cmd", choices=["start", "rebalance", "status", "contribute", "cron"])
-    ap.add_argument("--cash", type=float, default=10000.0)
+    ap.add_argument("--cash", type=float, default=1000000.0)
     args = ap.parse_args()
     a = load_acct()
     if args.cmd == "start":
         start(args.cash)
     elif a is None:
-        print("No account yet. Run: python india_ledger.py start --cash 10000")
+        print("No account yet. Run: python india_ledger.py start --cash 1000000")
     elif args.cmd == "rebalance":
         rebalance(a)
     elif args.cmd == "contribute":
