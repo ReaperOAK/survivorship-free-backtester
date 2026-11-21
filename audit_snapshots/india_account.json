@@ -726,7 +726,8 @@
   ],
   "opened": "2026-11-18",
   "equity_peaks": [
-    998128.3540399997
+    998128.3540399997,
+    999108.8181199998
   ],
   "consecutive_cash_violations": 0,
   "kill_rule_status": "PASS",
