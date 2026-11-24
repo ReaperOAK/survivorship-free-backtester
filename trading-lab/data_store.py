@@ -79,7 +79,10 @@ def ingest_day(d: str) -> int:
 
 
 def backfill(start: str, end: str | None = None, gap: float = 0.35):
-    end = end or (pd.Timestamp.utcnow().normalize() - pd.Timedelta(days=1)).strftime("%Y-%m-%d")
+    # After 12:00 UTC (17:30 IST), NSE bhavcopy for today is published; before 12:00 UTC, use yesterday
+    now = pd.Timestamp.now("UTC")
+    default_end = now.date() if now.hour >= 12 else (now.date() - pd.Timedelta(days=1))
+    end = end or default_end.strftime("%Y-%m-%d")
     days = pd.bdate_range(start, end)          # weekdays only
     have = stored_dates()
     todo = [d for d in days if d.date() not in have]
